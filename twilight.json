@@ -26,51 +26,46 @@
     ],
     "settings": [
         {
-            "id": "nested_collection",
+            "id": "collection",
             "type": "collection",
             "format": "collection",
-            "label": "فئات متداخلة",
-            "description": "فئات رئيسية مع عناصر فرعية",
-            "required": false,
-            "minLength": 0,
-            "maxLength": 5,
-            "item_label": "فئة",
-            "value": [
-                {
-                    "nested_collection.name": "فئة 1",
-                    "nested_collection.items": "عنصر 1, عنصر 2, عنصر 3"
-                },
-                {
-                    "nested_collection.name": "فئة 2",
-                    "nested_collection.items": "عنصر 4, عنصر 5, عنصر 6"
-                }
-            ],
+            "label": "Collection",
+            "description": null,
+            "labelHTML": null,
+            "item_label": null,
+            "icon": "sicon-list-add",
             "fields": [
                 {
+                    "id": "collection.name",
                     "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "اسم الفئة",
-                    "id": "nested_collection.name",
-                    "value": null,
-                    "required": true,
                     "format": "text",
+                    "label": "Name",
                     "description": null,
-                    "placeholder": "أدخل اسم الفئة هنا...",
-                    "minLength": 2,
-                    "maxLength": 50
+                    "required": true,
+                    "icon": "sicon-format-text-alt"
                 },
                 {
+                    "id": "collection.subcollection_items",
                     "type": "string",
-                    "icon": "sicon-list",
-                    "label": "العناصر",
-                    "id": "nested_collection.items",
-                    "value": null,
-                    "required": false,
                     "format": "textarea",
-                    "description": "أدخل أسماء العناصر مفصولة بفواصل (مثال: عنصر 1, عنصر 2, عنصر 3)",
-                    "placeholder": "أدخل أسماء العناصر هنا..."
+                    "label": "Subcollection Items",
+                    "description": "Enter items separated by commas (e.g., Item 1, Item 2, Item 3)",
+                    "required": false,
+                    "icon": "sicon-list"
                 }
-            ]
+            ],
+            "value": [
+                {
+                    "collection.name": "Collection 1",
+                    "collection.subcollection_items": "Item 1, Item 2, Item 3"
+                },
+                {
+                    "collection.name": "Collection 2",
+                    "collection.subcollection_items": "Item 4, Item 5"
+                }
+            ],
+            "minLength": 1,
+            "maxLength": 5
         },
         {
             "id": "squar_photo_bg_image_size",
