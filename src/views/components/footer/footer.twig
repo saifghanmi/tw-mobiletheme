@@ -84,46 +84,60 @@
 	<!-- Partners section -->
 	<div class="py-8 bg-dark border-t border-white/5">
 		<div class="container">
-			<h3 class="footer-heading text-center mb-8">شركاؤنا</h3>
+			<h3 class="text-center mb-8 text-xl font-bold">شركاؤنا</h3>
 
-			<!-- Debug info -->
-			<div class="text-white text-center mb-4">
-				<p>Theme Settings Available: {{ theme.settings is defined ? 'Yes' : 'No' }}</p>
-				{% if theme.settings is defined %}
-					<p>Footer Partners Defined: {{ theme.settings.footer_partners is defined ? 'Yes' : 'No' }}</p>
-					{% if theme.settings.footer_partners is defined %}
-						<p>Footer Partners Count: {{ theme.settings.footer_partners|length }}</p>
-					{% endif %}
-				{% endif %}
-			</div>
+			{% if theme.settings.partner_categories is defined and theme.settings.partners is defined %}
+				{% set categories = theme.settings.partner_categories %}
+				{% set partners = theme.settings.partners %}
 
-			<!-- Try with store.theme.settings -->
-			{% if store.theme.settings.footer_partners is defined and store.theme.settings.footer_partners|length > 0 %}
-				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
-					{% for partner in store.theme.settings.footer_partners %}
-						<div class="flex justify-center">
-							{% if partner['footer_partners.url'] %}
-								<a href="{{ partner['footer_partners.url'] }}" target="_blank" class="partner-logo" title="{{ partner['footer_partners.name'] }}">
-									<img src="{{ partner['footer_partners.logo'] }}" alt="{{ partner['footer_partners.name'] }}" class="max-h-12 max-w-full transition-opacity hover:opacity-80">
-								</a>
-							{% else %}
-								<div class="partner-logo" title="{{ partner['footer_partners.name'] }}">
-									<img src="{{ partner['footer_partners.logo'] }}" alt="{{ partner['footer_partners.name'] }}" class="max-h-12 max-w-full">
-								</div>
-							{% endif %}
+				{% for category in categories %}
+					{% set categoryName = category['partner_categories.name'] %}
+					{% set categoryDescription = category['partner_categories.description'] %}
+
+					<!-- Category Section -->
+					<div class="mb-12 last:mb-0">
+						<h4 class="text-lg font-semibold mb-2">{{ categoryName }}</h4>
+						{% if categoryDescription %}
+							<p class="text-sm text-white/70 mb-6">{{ categoryDescription }}</p>
+						{% endif %}
+
+						<!-- Partners in this category -->
+						<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+							{% for partner in partners %}
+								{% if partner['partners.category'] == categoryName %}
+									<div class="flex justify-center">
+										<a href="{{ partner['partners.url'] }}" target="_blank" class="bg-white/5 hover:bg-white/10 rounded-md p-4 flex items-center justify-center h-24 w-full transition-all duration-300" title="{{ partner['partners.name'] }}">
+											<img src="{{ partner['partners.logo'] }}" alt="{{ partner['partners.name'] }}" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100">
+										</a>
+									</div>
+								{% endif %}
+							{% endfor %}
 						</div>
-					{% endfor %}
-				</div>
+					</div>
+				{% endfor %}
 			{% else %}
-				<!-- Fallback to hardcoded demo partners -->
-				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
-					{% for i in 1..4 %}
-						<div class="flex justify-center">
-							<div class="partner-logo" title="Partner {{ i }}">
-								<img src="{{ 'images/placeholder.png' | cdn }}" alt="Partner {{ i }}" class="max-h-12 max-w-full">
-							</div>
-						</div>
-					{% endfor %}
+				<!-- Fallback if collections are not defined -->
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+					<div class="flex justify-center">
+						<a href="https://example.com" target="_blank" class="bg-white/5 hover:bg-white/10 rounded-md p-4 flex items-center justify-center h-24 w-full transition-all duration-300" title="شريك 1">
+							<img src="https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg" alt="شريك 1" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100">
+						</a>
+					</div>
+					<div class="flex justify-center">
+						<a href="https://example.com" target="_blank" class="bg-white/5 hover:bg-white/10 rounded-md p-4 flex items-center justify-center h-24 w-full transition-all duration-300" title="شريك 2">
+							<img src="https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg" alt="شريك 2" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100">
+						</a>
+					</div>
+					<div class="flex justify-center">
+						<a href="https://example.com" target="_blank" class="bg-white/5 hover:bg-white/10 rounded-md p-4 flex items-center justify-center h-24 w-full transition-all duration-300" title="شريك 3">
+							<img src="https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg" alt="شريك 3" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100">
+						</a>
+					</div>
+					<div class="flex justify-center">
+						<a href="https://example.com" target="_blank" class="bg-white/5 hover:bg-white/10 rounded-md p-4 flex items-center justify-center h-24 w-full transition-all duration-300" title="شريك 4">
+							<img src="https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg" alt="شريك 4" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100">
+						</a>
+					</div>
 				</div>
 			{% endif %}
 		</div>

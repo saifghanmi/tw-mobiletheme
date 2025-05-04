@@ -75,7 +75,7 @@
     }
 
     img {
-      @apply object-contain filter brightness-0 invert opacity-80;
+      @apply object-contain opacity-80;
 
       &:hover {
         @apply opacity-100;
@@ -115,6 +115,19 @@
 
       img {
         @apply filter-none brightness-100 invert-0;
+      }
+    }
+
+    // Partner categories styling for light theme
+    .py-8.bg-dark {
+      @apply bg-gray-100;
+
+      h3, h4 {
+        @apply text-gray-800;
+      }
+
+      p {
+        @apply text-gray-600;
       }
     }
   }

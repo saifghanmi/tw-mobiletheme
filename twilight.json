@@ -26,35 +26,86 @@
     ],
     "settings": [
         {
-            "id": "footer_partners",
+            "id": "partner_categories",
             "type": "collection",
             "format": "collection",
-            "label": "شركاء في أسفل الصفحة",
-            "description": "عرض شعارات الشركاء في أسفل الصفحة",
+            "label": "فئات الشركاء",
+            "description": "تصنيف الشركاء حسب الفئات",
             "required": false,
             "minLength": 0,
-            "maxLength": 10,
+            "maxLength": 5,
+            "item_label": "فئة",
+            "value": [
+                {
+                    "partner_categories.name": "شركاء استراتيجيون",
+                    "partner_categories.description": "شركاؤنا الاستراتيجيون الذين نفتخر بالعمل معهم"
+                },
+                {
+                    "partner_categories.name": "شركاء تقنيون",
+                    "partner_categories.description": "شركاؤنا في مجال التقنية والتطوير"
+                }
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "اسم الفئة",
+                    "id": "partner_categories.name",
+                    "value": null,
+                    "required": true,
+                    "format": "text",
+                    "description": null,
+                    "placeholder": "أدخل اسم الفئة هنا...",
+                    "minLength": 2,
+                    "maxLength": 50
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف الفئة",
+                    "id": "partner_categories.description",
+                    "value": null,
+                    "required": false,
+                    "format": "textarea",
+                    "description": "وصف قصير للفئة (اختياري)",
+                    "placeholder": "أدخل وصف الفئة هنا..."
+                }
+            ]
+        },
+        {
+            "id": "partners",
+            "type": "collection",
+            "format": "collection",
+            "label": "الشركاء",
+            "description": "قائمة الشركاء مع فئاتهم",
+            "required": false,
+            "minLength": 0,
+            "maxLength": 20,
             "item_label": "شريك",
             "value": [
                 {
-                    "footer_partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
-                    "footer_partners.name": "شريك 1",
-                    "footer_partners.url": "https://example.com"
+                    "partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
+                    "partners.name": "شريك 1",
+                    "partners.url": "https://example.com",
+                    "partners.category": "شركاء استراتيجيون"
                 },
                 {
-                    "footer_partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
-                    "footer_partners.name": "شريك 2",
-                    "footer_partners.url": "https://example.com"
+                    "partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
+                    "partners.name": "شريك 2",
+                    "partners.url": "https://example.com",
+                    "partners.category": "شركاء استراتيجيون"
                 },
                 {
-                    "footer_partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
-                    "footer_partners.name": "شريك 3",
-                    "footer_partners.url": "https://example.com"
+                    "partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
+                    "partners.name": "شريك 3",
+                    "partners.url": "https://example.com",
+                    "partners.category": "شركاء تقنيون"
                 },
                 {
-                    "footer_partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
-                    "footer_partners.name": "شريك 4",
-                    "footer_partners.url": "https://example.com"
+                    "partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
+                    "partners.name": "شريك 4",
+                    "partners.url": "https://example.com",
+                    "partners.category": "شركاء تقنيون"
                 }
             ],
             "fields": [
@@ -62,7 +113,7 @@
                     "type": "string",
                     "icon": "sicon-image",
                     "value": null,
-                    "id": "footer_partners.logo",
+                    "id": "partners.logo",
                     "label": "شعار الشريك",
                     "format": "image",
                     "required": true,
@@ -73,7 +124,7 @@
                     "type": "string",
                     "icon": "sicon-format-text-alt",
                     "label": "اسم الشريك",
-                    "id": "footer_partners.name",
+                    "id": "partners.name",
                     "value": null,
                     "required": true,
                     "format": "text",
@@ -86,12 +137,27 @@
                     "type": "string",
                     "icon": "sicon-link",
                     "label": "رابط الشريك",
-                    "id": "footer_partners.url",
+                    "id": "partners.url",
                     "value": null,
                     "required": false,
                     "format": "url",
                     "description": "رابط موقع الشريك (اختياري)",
                     "placeholder": "https://example.com"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-tag",
+                    "label": "فئة الشريك",
+                    "id": "partners.category",
+                    "value": null,
+                    "required": true,
+                    "format": "select",
+                    "description": "اختر الفئة التي ينتمي إليها الشريك",
+                    "options": {
+                        "source": "partner_categories",
+                        "value": "partner_categories.name",
+                        "label": "partner_categories.name"
+                    }
                 }
             ]
         },
