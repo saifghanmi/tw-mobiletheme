@@ -25,77 +25,7 @@
         "filters"
     ],
     "settings": [
-        {
-            "id": "collection",
-            "type": "collection",
-            "format": "collection",
-            "label": "Collection",
-            "description": null,
-            "item_label": "Collection Item",
-            "icon": "sicon-list-add",
-            "fields": [
-                {
-                    "id": "collection.name",
-                    "type": "string",
-                    "format": "text",
-                    "label": "Name",
-                    "description": null,
-                    "required": true,
-                    "icon": "sicon-format-text-alt"
-                },
-                {
-                    "id": "collection.subcollection",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "Subcollection",
-                    "description": "Items in this subcollection",
-                    "item_label": "Subcollection Item",
-                    "icon": "sicon-list-add",
-                    "fields": [
-                        {
-                            "id": "collection.subcollection.name",
-                            "type": "string",
-                            "format": "text",
-                            "label": "Name",
-                            "description": null,
-                            "required": true,
-                            "icon": "sicon-format-text-alt"
-                        },
-                        {
-                            "id": "collection.subcollection.description",
-                            "type": "string",
-                            "format": "textarea",
-                            "label": "Description",
-                            "description": null,
-                            "required": false,
-                            "icon": "sicon-format-text-alt"
-                        }
-                    ],
-                    "value": [
-                        {
-                            "collection.subcollection.name": "Subcollection Item 1",
-                            "collection.subcollection.description": "Description for item 1"
-                        },
-                        {
-                            "collection.subcollection.name": "Subcollection Item 2",
-                            "collection.subcollection.description": "Description for item 2"
-                        }
-                    ],
-                    "minLength": 1,
-                    "maxLength": 5
-                }
-            ],
-            "value": [
-                {
-                    "collection.name": "Collection 1"
-                },
-                {
-                    "collection.name": "Collection 2"
-                }
-            ],
-            "minLength": 1,
-            "maxLength": 5
-        },
+
         {
             "id": "squar_photo_bg_image_size",
             "type": "items",
@@ -1096,6 +1026,93 @@
                     "maxLength": 30
                 }
             ]
+        },
+        {
+            "id": "nested_collection",
+            "type": "collection",
+            "format": "collection",
+            "label": "Nested Collection",
+            "description": "A collection with nested items",
+            "item_label": "Category",
+            "icon": "sicon-list-add",
+            "fields": [
+                {
+                    "id": "nested_collection.name",
+                    "type": "string",
+                    "format": "text",
+                    "label": "Category Name",
+                    "description": null,
+                    "required": true,
+                    "icon": "sicon-format-text-alt"
+                },
+                {
+                    "id": "nested_collection.subcollection",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "Items",
+                    "description": "Items in this category",
+                    "item_label": "Item",
+                    "icon": "sicon-list-add",
+                    "fields": [
+                        {
+                            "id": "nested_collection.subcollection.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "Item Name",
+                            "description": null,
+                            "required": true,
+                            "icon": "sicon-format-text-alt"
+                        },
+                        {
+                            "id": "nested_collection.subcollection.description",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "Item Description",
+                            "description": null,
+                            "required": false,
+                            "icon": "sicon-format-text-alt"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "nested_collection.subcollection.name": "Item 1",
+                            "nested_collection.subcollection.description": "Description for item 1"
+                        },
+                        {
+                            "nested_collection.subcollection.name": "Item 2",
+                            "nested_collection.subcollection.description": "Description for item 2"
+                        }
+                    ],
+                    "minLength": 1,
+                    "maxLength": 5
+                }
+            ],
+            "value": [
+                {
+                    "nested_collection.name": "Category 1",
+                    "nested_collection.subcollection": [
+                        {
+                            "nested_collection.subcollection.name": "Item 1",
+                            "nested_collection.subcollection.description": "Description for item 1"
+                        },
+                        {
+                            "nested_collection.subcollection.name": "Item 2",
+                            "nested_collection.subcollection.description": "Description for item 2"
+                        }
+                    ]
+                },
+                {
+                    "nested_collection.name": "Category 2",
+                    "nested_collection.subcollection": [
+                        {
+                            "nested_collection.subcollection.name": "Item 3",
+                            "nested_collection.subcollection.description": "Description for item 3"
+                        }
+                    ]
+                }
+            ],
+            "minLength": 1,
+            "maxLength": 5
         }
     ],
     "support_url": "https://example.com",
