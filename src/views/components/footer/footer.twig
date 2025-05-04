@@ -82,12 +82,25 @@
 	</div>
 
 	<!-- Partners section -->
-	{% if theme.settings.footer_partners and theme.settings.footer_partners|length > 0 %}
-		<div class="py-8 bg-dark border-t border-white/5">
-			<div class="container">
-				<h3 class="footer-heading text-center mb-8">شركاؤنا</h3>
+	<div class="py-8 bg-dark border-t border-white/5">
+		<div class="container">
+			<h3 class="footer-heading text-center mb-8">شركاؤنا</h3>
+
+			<!-- Debug info -->
+			<div class="text-white text-center mb-4">
+				<p>Theme Settings Available: {{ theme.settings is defined ? 'Yes' : 'No' }}</p>
+				{% if theme.settings is defined %}
+					<p>Footer Partners Defined: {{ theme.settings.footer_partners is defined ? 'Yes' : 'No' }}</p>
+					{% if theme.settings.footer_partners is defined %}
+						<p>Footer Partners Count: {{ theme.settings.footer_partners|length }}</p>
+					{% endif %}
+				{% endif %}
+			</div>
+
+			<!-- Try with store.theme.settings -->
+			{% if store.theme.settings.footer_partners is defined and store.theme.settings.footer_partners|length > 0 %}
 				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
-					{% for partner in theme.settings.footer_partners %}
+					{% for partner in store.theme.settings.footer_partners %}
 						<div class="flex justify-center">
 							{% if partner['footer_partners.url'] %}
 								<a href="{{ partner['footer_partners.url'] }}" target="_blank" class="partner-logo" title="{{ partner['footer_partners.name'] }}">
@@ -101,9 +114,20 @@
 						</div>
 					{% endfor %}
 				</div>
-			</div>
+			{% else %}
+				<!-- Fallback to hardcoded demo partners -->
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
+					{% for i in 1..4 %}
+						<div class="flex justify-center">
+							<div class="partner-logo" title="Partner {{ i }}">
+								<img src="{{ 'images/placeholder.png' | cdn }}" alt="Partner {{ i }}" class="max-h-12 max-w-full">
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
-	{% endif %}
+	</div>
 
 	<!-- Footer bottom -->
 	<div class="py-6 bg-darker">
