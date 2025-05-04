@@ -26,138 +26,147 @@
     ],
     "settings": [
         {
-            "id": "partner_categories",
+            "id": "nested_categories",
             "type": "collection",
             "format": "collection",
-            "label": "فئات الشركاء",
-            "description": "تصنيف الشركاء حسب الفئات",
+            "label": "فئات متداخلة",
+            "description": "فئات رئيسية مع فئات فرعية",
             "required": false,
             "minLength": 0,
             "maxLength": 5,
-            "item_label": "فئة",
+            "item_label": "فئة رئيسية",
             "value": [
                 {
-                    "partner_categories.name": "شركاء استراتيجيون",
-                    "partner_categories.description": "شركاؤنا الاستراتيجيون الذين نفتخر بالعمل معهم"
+                    "nested_categories.name": "منتجات",
+                    "nested_categories.subcategories": "ملابس, أحذية, إكسسوارات"
                 },
                 {
-                    "partner_categories.name": "شركاء تقنيون",
-                    "partner_categories.description": "شركاؤنا في مجال التقنية والتطوير"
+                    "nested_categories.name": "خدمات",
+                    "nested_categories.subcategories": "استشارات, تدريب, دعم فني"
                 }
             ],
             "fields": [
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
-                    "label": "اسم الفئة",
-                    "id": "partner_categories.name",
+                    "label": "اسم الفئة الرئيسية",
+                    "id": "nested_categories.name",
                     "value": null,
                     "required": true,
                     "format": "text",
                     "description": null,
-                    "placeholder": "أدخل اسم الفئة هنا...",
+                    "placeholder": "أدخل اسم الفئة الرئيسية هنا...",
                     "minLength": 2,
                     "maxLength": 50
                 },
                 {
                     "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "وصف الفئة",
-                    "id": "partner_categories.description",
+                    "icon": "sicon-list",
+                    "label": "الفئات الفرعية",
+                    "id": "nested_categories.subcategories",
                     "value": null,
                     "required": false,
                     "format": "textarea",
-                    "description": "وصف قصير للفئة (اختياري)",
-                    "placeholder": "أدخل وصف الفئة هنا..."
+                    "description": "أدخل أسماء الفئات الفرعية مفصولة بفواصل (مثال: فئة 1, فئة 2, فئة 3)",
+                    "placeholder": "أدخل أسماء الفئات الفرعية هنا..."
                 }
             ]
         },
         {
-            "id": "partners",
+            "id": "nested_menu",
             "type": "collection",
             "format": "collection",
-            "label": "الشركاء",
-            "description": "قائمة الشركاء مع فئاتهم",
+            "label": "قائمة متداخلة",
+            "description": "قائمة طعام مع أصناف فرعية",
             "required": false,
             "minLength": 0,
-            "maxLength": 20,
-            "item_label": "شريك",
+            "maxLength": 10,
+            "item_label": "قسم",
             "value": [
                 {
-                    "partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
-                    "partners.name": "شريك 1",
-                    "partners.url": "https://example.com",
-                    "partners.category": "شركاء استراتيجيون"
+                    "nested_menu.name": "المقبلات",
+                    "nested_menu.items": "سلطة, شوربة, مقبلات ساخنة"
                 },
                 {
-                    "partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
-                    "partners.name": "شريك 2",
-                    "partners.url": "https://example.com",
-                    "partners.category": "شركاء استراتيجيون"
+                    "nested_menu.name": "الأطباق الرئيسية",
+                    "nested_menu.items": "دجاج, لحم, سمك, نباتي"
                 },
                 {
-                    "partners.logo": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
-                    "partners.name": "شريك 3",
-                    "partners.url": "https://example.com",
-                    "partners.category": "شركاء تقنيون"
-                },
-                {
-                    "partners.logo": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
-                    "partners.name": "شريك 4",
-                    "partners.url": "https://example.com",
-                    "partners.category": "شركاء تقنيون"
+                    "nested_menu.name": "الحلويات",
+                    "nested_menu.items": "كيك, آيس كريم, فواكه"
                 }
             ],
             "fields": [
                 {
                     "type": "string",
-                    "icon": "sicon-image",
-                    "value": null,
-                    "id": "partners.logo",
-                    "label": "شعار الشريك",
-                    "format": "image",
-                    "required": true,
-                    "placeholder": null,
-                    "description": "* المقاس المناسب للصورة هو 150×50 بكسل"
-                },
-                {
-                    "type": "string",
                     "icon": "sicon-format-text-alt",
-                    "label": "اسم الشريك",
-                    "id": "partners.name",
+                    "label": "اسم القسم",
+                    "id": "nested_menu.name",
                     "value": null,
                     "required": true,
                     "format": "text",
                     "description": null,
-                    "placeholder": "أدخل اسم الشريك هنا...",
+                    "placeholder": "أدخل اسم القسم هنا...",
                     "minLength": 2,
                     "maxLength": 50
                 },
                 {
                     "type": "string",
-                    "icon": "sicon-link",
-                    "label": "رابط الشريك",
-                    "id": "partners.url",
+                    "icon": "sicon-list",
+                    "label": "الأصناف",
+                    "id": "nested_menu.items",
                     "value": null,
                     "required": false,
-                    "format": "url",
-                    "description": "رابط موقع الشريك (اختياري)",
-                    "placeholder": "https://example.com"
+                    "format": "textarea",
+                    "description": "أدخل أسماء الأصناف مفصولة بفواصل (مثال: صنف 1, صنف 2, صنف 3)",
+                    "placeholder": "أدخل أسماء الأصناف هنا..."
+                }
+            ]
+        },
+        {
+            "id": "multi_level_categories",
+            "type": "collection",
+            "format": "collection",
+            "label": "تصنيفات متعددة المستويات",
+            "description": "تصنيفات رئيسية وفرعية وعناصر",
+            "required": false,
+            "minLength": 0,
+            "maxLength": 5,
+            "item_label": "تصنيف رئيسي",
+            "value": [
+                {
+                    "multi_level_categories.name": "إلكترونيات",
+                    "multi_level_categories.subcategories": "هواتف ذكية: آيفون, سامسونج, هواوي | أجهزة لوحية: آيباد, جالاكسي تاب | لابتوب: ماك بوك, ديل, لينوفو"
+                },
+                {
+                    "multi_level_categories.name": "ملابس",
+                    "multi_level_categories.subcategories": "رجالي: قمصان, بناطيل, أحذية | نسائي: فساتين, بلوزات, تنانير | أطفال: ملابس أولاد, ملابس بنات"
+                }
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "اسم التصنيف الرئيسي",
+                    "id": "multi_level_categories.name",
+                    "value": null,
+                    "required": true,
+                    "format": "text",
+                    "description": null,
+                    "placeholder": "أدخل اسم التصنيف الرئيسي هنا...",
+                    "minLength": 2,
+                    "maxLength": 50
                 },
                 {
                     "type": "string",
-                    "icon": "sicon-tag",
-                    "label": "فئة الشريك",
-                    "id": "partners.category",
+                    "icon": "sicon-list",
+                    "label": "التصنيفات الفرعية والعناصر",
+                    "id": "multi_level_categories.subcategories",
                     "value": null,
-                    "required": true,
-                    "format": "select",
-                    "description": "اختر الفئة التي ينتمي إليها الشريك",
-                    "options": {
-                        "source": "partner_categories",
-                        "value": "partner_categories.name",
-                        "label": "partner_categories.name"
-                    }
+                    "required": false,
+                    "format": "textarea",
+                    "description": "أدخل التصنيفات الفرعية والعناصر بالتنسيق التالي: تصنيف فرعي: عنصر 1, عنصر 2 | تصنيف فرعي آخر: عنصر 3, عنصر 4",
+                    "placeholder": "أدخل التصنيفات الفرعية والعناصر هنا..."
                 }
             ]
         },
