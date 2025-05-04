@@ -3,26 +3,83 @@
   @apply relative bg-darker text-white mt-8 sm:mt-16;
 
   a{
-    @apply transition-opacity hover:opacity-75;
+    @apply transition-colors hover:text-primary duration-300;
   }
 
   &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
-  }  
+    @apply bg-dark py-12 lg:py-20;
+  }
 
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
+  .footer-heading {
+    @apply text-sm uppercase tracking-wider mb-5 font-light border-b border-white/10 pb-3;
   }
 
   .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+    @apply bg-white/5 hover:bg-primary rounded-full w-10 h-10 justify-center flex items-center hover:text-white transition duration-300 text-sm
   }
 
-  .contact-social{
-    @apply mt-5 pt-5 border-t border-white/10;
-
+  .footer-menu {
     ul {
-      @apply mb-0;
+      @apply space-y-3;
+    }
+
+    li a {
+      @apply text-sm text-white/70 hover:text-white flex items-center;
+
+      &:before {
+        content: "";
+        @apply w-1 h-1 bg-primary rounded-full mr-2 opacity-0 transition-opacity duration-300;
+      }
+
+      &:hover:before {
+        @apply opacity-100;
+      }
+    }
+  }
+
+  .footer-contacts {
+    ul {
+      @apply space-y-4;
+    }
+
+    li {
+      @apply flex items-start;
+
+      i {
+        @apply text-primary mr-3 mt-1;
+      }
+
+      span {
+        @apply text-sm text-white/70;
+      }
+    }
+  }
+
+  .footer-apps {
+    img {
+      @apply rounded-md shadow-lg transition-transform duration-300 hover:scale-105;
+    }
+  }
+
+  .footer-payments {
+    img {
+      @apply opacity-70 hover:opacity-100 transition-opacity duration-300;
+    }
+  }
+
+  .partner-logo {
+    @apply flex items-center justify-center bg-white/5 rounded-md p-4 h-24 w-full transition-all duration-300;
+
+    &:hover {
+      @apply bg-white/10 transform scale-105;
+    }
+
+    img {
+      @apply object-contain filter brightness-0 invert opacity-80;
+
+      &:hover {
+        @apply opacity-100;
+      }
     }
   }
 
@@ -30,20 +87,49 @@
     @apply bg-gray-50 text-gray-700;
 
     .store-footer__inner {
-      @apply bg-gray-100 border-b-gray-200;
+      @apply bg-gray-100;
     }
 
     .social-link {
-      @apply border-gray-300;
+      @apply bg-gray-200 hover:bg-primary;
     }
 
-    .contact-social{
-      @apply border-gray-100;
+    .footer-heading {
+      @apply border-gray-200;
+    }
+
+    .footer-menu li a {
+      @apply text-gray-600 hover:text-gray-900;
+    }
+
+    .footer-contacts li span {
+      @apply text-gray-600;
+    }
+
+    .partner-logo {
+      @apply bg-gray-200;
+
+      &:hover {
+        @apply bg-gray-300;
+      }
+
+      img {
+        @apply filter-none brightness-100 invert-0;
+      }
+    }
+  }
+
+  input {
+    &:focus {
+      @apply outline-none ring-2 ring-primary;
     }
   }
 }
 
-
 .copyright-text p{
-  @apply text-gray-700;
+  @apply text-white/50;
+
+  .footer-is-light & {
+    @apply text-gray-500;
+  }
 }
