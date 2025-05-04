@@ -31,8 +31,7 @@
             "format": "collection",
             "label": "Collection",
             "description": null,
-            "labelHTML": null,
-            "item_label": null,
+            "item_label": "Collection Item",
             "icon": "sicon-list-add",
             "fields": [
                 {
@@ -45,23 +44,53 @@
                     "icon": "sicon-format-text-alt"
                 },
                 {
-                    "id": "collection.subcollection_items",
-                    "type": "string",
-                    "format": "textarea",
-                    "label": "Subcollection Items",
-                    "description": "Enter items separated by commas (e.g., Item 1, Item 2, Item 3)",
-                    "required": false,
-                    "icon": "sicon-list"
+                    "id": "collection.subcollection",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "Subcollection",
+                    "description": "Items in this subcollection",
+                    "item_label": "Subcollection Item",
+                    "icon": "sicon-list-add",
+                    "fields": [
+                        {
+                            "id": "collection.subcollection.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "Name",
+                            "description": null,
+                            "required": true,
+                            "icon": "sicon-format-text-alt"
+                        },
+                        {
+                            "id": "collection.subcollection.description",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "Description",
+                            "description": null,
+                            "required": false,
+                            "icon": "sicon-format-text-alt"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "collection.subcollection.name": "Subcollection Item 1",
+                            "collection.subcollection.description": "Description for item 1"
+                        },
+                        {
+                            "collection.subcollection.name": "Subcollection Item 2",
+                            "collection.subcollection.description": "Description for item 2"
+                        }
+                    ],
+                    "minLength": 1,
+                    "maxLength": 5
                 }
             ],
             "value": [
                 {
-                    "collection.name": "Collection 1",
-                    "collection.subcollection_items": "Item 1, Item 2, Item 3"
+                    "collection.name": "Collection 1"
                 },
                 {
-                    "collection.name": "Collection 2",
-                    "collection.subcollection_items": "Item 4, Item 5"
+                    "collection.name": "Collection 2"
                 }
             ],
             "minLength": 1,
