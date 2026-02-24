@@ -1,0 +1,32 @@
+{% set component = component ?? {} %}
+{% set title = component.title ?? {'ar': 'التصنيفات', 'en': 'Categories'} %}
+{% set categories = component.categories ?? [] %}
+{% set show_images = component.show_images ?? true %}
+
+{% if categories|length > 0 %}
+<section class="smu-categories-row smu-section" data-component="categories-row">
+    <div class="smu-container">
+        <div class="smu-section-header">
+            <h2 class="smu-section-title">
+                {{ title[salla.config.get('lang', 'ar')] ?? title.ar ?? title }}
+            </h2>
+        </div>
+
+        <div class="smu-categories-scroll">
+            {% for category in categories %}
+            <a href="{{ category.url ?? '#' }}" class="smu-category-item">
+                {% if show_images and category.image %}
+                <div class="smu-category-img">
+                    <img src="{{ category.image }}" alt="{{ category.name }}" loading="lazy">
+                </div>
+                {% endif %}
+                <span class="smu-category-name">{{ category.name }}</span>
+                {% if category.products_count is defined %}
+                <span class="smu-category-count">({{ category.products_count }})</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

@@ -1,0 +1,50 @@
+{% set component = component ?? {} %}
+{% set slides = component.slides ?? [] %}
+{% set auto_play = component.auto_play ?? true %}
+{% set interval = component.interval ?? 4 %}
+
+{% if slides|length > 0 %}
+<section class="smu-hero-slider" data-component="hero-slider" data-autoplay="{{ auto_play ? 'true' : 'false' }}" data-interval="{{ interval * 1000 }}">
+    <div class="smu-slider-track">
+        {% for slide in slides %}
+        <div class="smu-slide" data-index="{{ loop.index0 }}">
+            {# Mobile image takes priority on small screens #}
+            <picture>
+                {% if slide.image_mobile %}
+                <source media="(max-width: 768px)" srcset="{{ slide.image_mobile }}">
+                {% endif %}
+                <img src="{{ slide.image }}" alt="{{ slide.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}">
+            </picture>
+
+            {% if slide.title or slide.subtitle or slide.button_text %}
+            <div class="smu-slide-content">
+                {% if slide.title %}
+                <h2 class="smu-slide-title">{{ slide.title }}</h2>
+                {% endif %}
+                {% if slide.subtitle %}
+                <p class="smu-slide-subtitle">{{ slide.subtitle }}</p>
+                {% endif %}
+                {% if slide.button_text and slide.url %}
+                <a href="{{ slide.url }}" class="smu-btn smu-btn-primary">{{ slide.button_text }}</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if slides|length > 1 %}
+    <div class="smu-slider-dots">
+        {% for slide in slides %}
+        <button class="smu-dot {{ loop.first ? 'active' : '' }}" data-slide="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}"></button>
+        {% endfor %}
+    </div>
+    <button class="smu-slider-prev" aria-label="{{ 'previous' | trans }}">
+        <i class="sicon-chevron-right"></i>
+    </button>
+    <button class="smu-slider-next" aria-label="{{ 'next' | trans }}">
+        <i class="sicon-chevron-left"></i>
+    </button>
+    {% endif %}
+</section>
+{% endif %}

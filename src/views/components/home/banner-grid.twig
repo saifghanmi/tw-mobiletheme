@@ -1,0 +1,28 @@
+{% set component = component ?? {} %}
+{% set banners = component.banners ?? [] %}
+{% set layout = component.layout ?? '2-col' %}
+
+{% set col_class = {
+    '1-col': 'smu-grid-1',
+    '2-col': 'smu-grid-2',
+    '3-col': 'smu-grid-3'
+}[layout] ?? 'smu-grid-2' %}
+
+{% if banners|length > 0 %}
+<section class="smu-banner-grid smu-section" data-component="banner-grid" data-layout="{{ layout }}">
+    <div class="smu-container">
+        <div class="{{ col_class }}">
+            {% for banner in banners %}
+            <a href="{{ banner.url ?? '#' }}" class="smu-banner-item">
+                <img src="{{ banner.image }}" alt="{{ banner.title ?? '' }}" loading="lazy">
+                {% if banner.title %}
+                <div class="smu-banner-overlay">
+                    <span class="smu-banner-title">{{ banner.title }}</span>
+                </div>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

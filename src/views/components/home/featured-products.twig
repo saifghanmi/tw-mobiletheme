@@ -1,0 +1,31 @@
+{% set component = component ?? {} %}
+{% set title = component.title ?? {'ar': 'منتجات مميزة', 'en': 'Featured Products'} %}
+{% set products = component.products ?? [] %}
+{% set layout = component.layout ?? 'grid' %}
+{% set show_all_url = component.show_all_url ?? '' %}
+
+{% if products|length > 0 %}
+<section class="smu-featured-products smu-section" data-component="featured-products" data-layout="{{ layout }}">
+    <div class="smu-container">
+        <div class="smu-section-header">
+            <h2 class="smu-section-title">
+                {{ title[salla.config.get('lang', 'ar')] ?? title.ar ?? title }}
+            </h2>
+            {% if show_all_url %}
+            <a href="{{ show_all_url }}" class="smu-show-all">
+                {{ 'show_all' | trans }}
+                <i class="sicon-arrow-left rtl:sicon-arrow-right"></i>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="smu-products-{{ layout }}">
+            {% for product in products %}
+            <div class="smu-product-card-wrapper">
+                {{ component('product-card', {product: product}) }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

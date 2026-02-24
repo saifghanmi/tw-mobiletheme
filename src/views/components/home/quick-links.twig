@@ -1,0 +1,28 @@
+{% set component = component ?? {} %}
+{% set title = component.title ?? '' %}
+{% set links = component.links ?? [] %}
+
+{% if links|length > 0 %}
+<section class="smu-quick-links smu-section" data-component="quick-links">
+    <div class="smu-container">
+        {% if title %}
+        <div class="smu-section-header">
+            <h2 class="smu-section-title">{{ title }}</h2>
+        </div>
+        {% endif %}
+
+        <div class="smu-links-scroll">
+            {% for link in links %}
+            <a href="{{ link.url }}" class="smu-link-item">
+                {% if link.image %}
+                <div class="smu-link-icon">
+                    <img src="{{ link.image }}" alt="{{ link.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <span class="smu-link-title">{{ link.title }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
